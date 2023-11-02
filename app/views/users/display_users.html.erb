@@ -1,0 +1,13 @@
+<h2>Import Results</h2>
+<p>Total User Data Rows: <%= params["import_results"]["total"] %></p>
+<p>Successful Imports: <%= params["import_results"]["success"] %></p>
+<p>Failed Imports: <%= params["import_results"]["failed"] %></p>
+<% if params[:import_results][:failed].to_i > 0 %>
+  <h3>Failed Import Reasons:</h3>
+  <ul>
+    <% params[:import_results][:reasons].each do |reason| %>
+      <li>Row <%= reason[:row] %>: <%= reason[:errors].join(', ') %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= link_to 'Back', root_path, class: 'btn btn-primary' %>
